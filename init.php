@@ -8,7 +8,7 @@
  * Author URI: http://nabeel.molham.me/
  * Text Domain: wp-plugin-domain
  * Domain Path: /languages
- * License: GNU General Public License, version 2, http://www.gnu.org/licenses/gpl-2.0.html
+ * License: GNU General Public License, version 3, http://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
 if ( !defined( 'WPINC' ) )
