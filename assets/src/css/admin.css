@@ -1,0 +1,5 @@
+.plugin-class {
+	display: inline-block;
+	margin-bottom: 10px;
+	outline: 1px solid red;
+}

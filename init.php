@@ -110,7 +110,7 @@ class Plugin extends Singular
 		if ( !file_exists( $__template_path ) )
 		{
 			// file not found!
-			wp_die( sprintf( __( 'Template <code>%s</code> file not found, path: <code>%s</code>', WPPB_DOMAIN ), $__view_name, $__template_path ) );
+			wp_die( sprintf( __( 'Template <code>%s</code> File not found, calculated path: <code>%s</code>', WPPB_DOMAIN ), $__view_name, $__template_path ) );
 		}
 
 		// clear vars
