@@ -3,6 +3,6 @@
  */
 (function ( w, $, undefined ) {
 	$( function () {
-		console.log( 'page loaded and ready to go' );
+		console.log( 'Admin page loaded and ready to go, okay?' );
 	} );
 })( window, jQuery );

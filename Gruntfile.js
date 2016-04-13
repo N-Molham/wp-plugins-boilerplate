@@ -6,11 +6,15 @@
 var plugin_args = {
 	path: './', // plugin directory path
 	domainPath: '/languages', // language files location ( relative to "path" )
-	potFilename: 'template.php', // generated pot file name
+	potFilename: 'template.pot', // generated pot file name
 	exclude: [ // excluded files and directory from parsing
 		'vendor/' // composer libs vendor dir
 	],
-	mainFile: 'init.php' // plugin main file ( with plugin description comment doc )
+	mainFile: 'init.php', // plugin main file ( with plugin description comment doc )
+	watchFiles: {
+		assets: [ 'assets/src/css/**/*.css', 'assets/src/js/**/*.js' ],
+		potfile: [ './**/*.php' ]
+	}
 };
 
 /**
@@ -47,8 +51,8 @@ module.exports = function ( grunt ) {
 					cwd: plugin_args.path,
 					domainPath: plugin_args.domainPath,
 					exclude: plugin_args.exclude,
-					mainFile: 'init.php',
-					potFilename: 'template.pot',
+					mainFile: plugin_args.mainFile,
+					potFilename: plugin_args.potFilename,
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true,
@@ -64,17 +68,17 @@ module.exports = function ( grunt ) {
 		watch: {
 			// for localization .pot file
 			potfile: {
-				files: [ plugin_args.path + '**/*.php' ],
+				files: plugin_args.watchFiles.potfile,
 				tasks: [ 'makepot' ]
 			},
 			// for JS & CSS assets
 			assets: {
-				files: [ 'assets/src/css/*', 'assets/src/js/*' ],
+				files: plugin_args.watchFiles.assets,
 				tasks: [ 'uglify', 'cssmin' ]
 			},
 			// for JS & CSS assets
 			all: {
-				files: [ plugin_args.path + '**/*.php', 'assets/src/css/*', 'assets/src/js/*' ],
+				files: plugin_args.watchFiles.potfile.concat( plugin_args.watchFiles.assets ),
 				tasks: [ 'makepot', 'uglify', 'cssmin' ]
 			}
 		}

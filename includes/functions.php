@@ -44,6 +44,6 @@ if ( !function_exists( 'wppb_version' ) ):
 	 */
 	function wppb_version()
 	{
-		wp_plugin_boilerplate()->version;
+		return wp_plugin_boilerplate()->version;
 	}
 endif;

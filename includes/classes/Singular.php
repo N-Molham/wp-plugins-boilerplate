@@ -31,7 +31,7 @@ class Singular
 	 *
 	 * @return static
 	 */
-	public static function &get_instance()
+	public static function &get_instance( $args = '' )
 	{
 		// use 5.4 method for backward compatibility
 		$class_name = get_called_class();
