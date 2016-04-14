@@ -25,14 +25,27 @@ if ( !function_exists( 'wppb_view' ) ):
 	/**
 	 * Load view
 	 *
-	 * @param string $view_name
-	 * @param array  $args
+	 * @param string  $view_name
+	 * @param array   $args
+	 * @param boolean $return
 	 *
 	 * @return void
 	 */
-	function wppb_view( $view_name, $args = null )
+	function wppb_view( $view_name, $args = null, $return = false )
 	{
+		if ( $return )
+		{
+			// start buffer
+			ob_start();
+		}
+
 		wp_plugin_boilerplate()->load_view( $view_name, $args );
+
+		if ( $return )
+		{
+			// get buffer flush
+			return ob_get_clean();
+		}
 	}
 endif;
 
