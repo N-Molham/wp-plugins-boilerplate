@@ -7,6 +7,7 @@
  * @package WP_Plugins\Boilerplate
  */
 
+use WP_Plugins\Boilerplate\Component;
 use WP_Plugins\Boilerplate\Plugin;
 
 if ( !function_exists( 'wp_plugin_boilerplate' ) ):
@@ -18,6 +19,25 @@ if ( !function_exists( 'wp_plugin_boilerplate' ) ):
 	function wp_plugin_boilerplate()
 	{
 		return Plugin::get_instance();
+	}
+endif;
+
+if ( !function_exists( 'wppb_component' ) ):
+	/**
+	 * Get plugin component instance
+	 *
+	 * @param string $component_name
+	 *
+	 * @return Component|null
+	 */
+	function wppb_component( $component_name )
+	{
+		if ( isset( wp_plugin_boilerplate()->$component_name ) )
+		{
+			return wp_plugin_boilerplate()->$component_name;
+		}
+
+		return null;
 	}
 endif;
 

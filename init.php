@@ -49,28 +49,35 @@ class Plugin extends Singular
 	 *
 	 * @var string
 	 */
-	var $version = '1.0.0';
+	public $version = '1.0.0';
 
 	/**
 	 * Backend
 	 *
 	 * @var Backend
 	 */
-	var $backend;
+	public $backend;
 
 	/**
 	 * Backend
 	 *
 	 * @var Frontend
 	 */
-	var $frontend;
+	public $frontend;
 
 	/**
 	 * Backend
 	 *
 	 * @var Ajax_Handler
 	 */
-	var $ajax;
+	public $ajax;
+
+	/**
+	 * ACF Pro Loader
+	 *
+	 * @var ACF_Pro_Loader
+	 */
+	public $acf;
 
 	/**
 	 * Initialization
@@ -86,6 +93,7 @@ class Plugin extends Singular
 		spl_autoload_register( [ &$this, 'autoloader' ] );
 
 		// modules
+		$this->acf      = ACF_Pro_Loader::get_instance();
 		$this->ajax     = Ajax_Handler::get_instance();
 		$this->backend  = Backend::get_instance();
 		$this->frontend = Frontend::get_instance();
