@@ -15,7 +15,11 @@ var plugin_args = {
 	],
 	main_file    : 'init.php', // plugin main file ( with plugin description comment doc )
 	watch_files  : {
-		assets : [ 'assets/src/css/**/*.css', 'assets/src/js/**/*.js' ],
+		assets : [
+			'assets/src/css/**/*.css',
+			'assets/src/css/**/*.scss',
+			'assets/src/js/**/*.js'
+		],
 		potfile: [ './**/*.php' ]
 	},
 	author       : 'Nabeel Molham <n.molham@gmail.com>'
@@ -49,6 +53,20 @@ module.exports = function ( grunt ) {
 				dest  : 'assets/dist/css'
 			}
 		},
+		sass   : {
+			dist: {
+				options: {
+					style: 'compressed'
+				},
+				files  : [ {
+					expand: true,
+					cwd   : 'assets/src/css',
+					src   : [ '**/*.scss' ],
+					dest  : 'assets/dist/css',
+					ext   : '.css'
+				} ]
+			}
+		},
 		makepot: {
 			target: {
 				options: {
@@ -78,12 +96,12 @@ module.exports = function ( grunt ) {
 			// for JS & CSS assets
 			assets : {
 				files: plugin_args.watch_files.assets,
-				tasks: [ 'uglify', 'cssmin' ]
+				tasks: [ 'uglify', 'sass', 'cssmin' ]
 			},
 			// for JS & CSS assets
 			all    : {
 				files: plugin_args.watch_files.potfile.concat( plugin_args.watch_files.assets ),
-				tasks: [ 'makepot', 'uglify', 'cssmin' ]
+				tasks: [ 'makepot', 'uglify', 'sass', 'cssmin' ]
 			}
 		}
 	} );
@@ -91,6 +109,7 @@ module.exports = function ( grunt ) {
 	// Load plugins
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 

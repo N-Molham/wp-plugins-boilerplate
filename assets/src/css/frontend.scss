@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+// includes
+@import "utils";
+@import "flex";
+
+body.home {
+	.plugin-class {
+		display: inline-block;
+		margin-bottom: 10px;
+		outline: 1px solid red;
+	}
+
+	&.has-sidebar {
+		display: block;
+	}
+}

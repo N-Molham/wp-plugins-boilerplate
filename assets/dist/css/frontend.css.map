@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAOC,uBAAc,CACb,OAAO,CAAE,YAAY,CACrB,aAAa,CAAE,IAAI,CACnB,OAAO,CAAE,aAAa,CAGvB,qBAAc,CACb,OAAO,CAAE,KAAK",
+"sources": ["../../src/css/frontend.scss"],
+"names": [],
+"file": "frontend.css"
+}
