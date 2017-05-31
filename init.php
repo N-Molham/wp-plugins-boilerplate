@@ -1,8 +1,8 @@
 <?php namespace WP_Plugins\Boilerplate;
 
 /**
- * Plugin Name: WP Plugin Name
- * Description: WP Plugin Description
+ * Plugin Name: WP Plugins Boilerplate
+ * Description: Plugin Description
  * Version: 1.0.0
  * Author: Nabeel Molham
  * Author URI: http://nabeel.molham.me/

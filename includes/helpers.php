@@ -14,7 +14,60 @@ final class Helpers
 	 *
 	 * @var string
 	 */
-	static $text_domain = WPPB_DOMAIN;
+	public static $text_domain = WPPB_DOMAIN;
+
+	/**
+	 * Enqueue path
+	 *
+	 * @var string
+	 */
+	private static $enqueue_path;
+
+	/**
+	 * Enqueue assets version
+	 *
+	 * @var string
+	 */
+	private static $assets_version;
+
+	/**
+	 * Get Assets enqueue base path
+	 *
+	 * @return string
+	 */
+	public static function enqueue_path()
+	{
+		if ( null === self::$enqueue_path )
+		{
+			self::$enqueue_path = sprintf( '%s/assets/%s/', untrailingslashit( WPPB_URI ), self::is_script_debugging() ? 'src' : 'dist' );
+		}
+
+		return self::$enqueue_path;
+	}
+
+	/**
+	 * Get the current assets version
+	 *
+	 * @return string
+	 */
+	public static function assets_version()
+	{
+		if ( null === self::$assets_version )
+		{
+			// assets version file
+			$version_file = WPPB_DIR . 'assets/last_update';
+
+			// read from file
+			self::$assets_version = file_exists( $version_file ) && is_readable( $version_file ) ? sanitize_key( file_get_contents( $version_file ) ) : null;
+			if ( empty( self::$assets_version ) )
+			{
+				// fallback to plugin version
+				self::$assets_version = wppb_version();
+			}
+		}
+
+		return self::$assets_version;
+	}
 
 	/**
 	 * Check if the given URL is valid
@@ -146,7 +199,7 @@ final class Helpers
 	 * @since 1.0
 	 * @return string
 	 */
-	public static function get_visitor_IP()
+	public static function get_visitor_ip()
 	{
 		$client  = isset( $_SERVER['HTTP_CLIENT_IP'] ) ? $_SERVER['HTTP_CLIENT_IP'] : null;
 		$forward = isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : null;
@@ -189,13 +242,13 @@ final class Helpers
 	 * URL Redirect
 	 *
 	 * @param string $target
-	 * @param number $status
+	 * @param int    $status
 	 *
 	 * @return void
 	 */
 	public static function redirect( $target = '', $status = 302 )
 	{
-		if ( '' == $target && isset( $_REQUEST['_wp_http_referer'] ) )
+		if ( '' === $target && isset( $_REQUEST['_wp_http_referer'] ) )
 		{
 			$target = esc_url( $_REQUEST['_wp_http_referer'] );
 		}

@@ -1,4 +1,5 @@
 *.log
 composer.phar
-vendor/
 node_modules/
+.sass-cache/
+.hgcheck/
