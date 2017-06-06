@@ -1,2 +1,3 @@
 # wp-plugins-boilerplate
-My WordPress plugin boilerplate
+
+For Documentation go to [Wiki](https://github.com/N-Molham/wp-plugins-boilerplate/wiki)
