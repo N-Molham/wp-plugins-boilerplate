@@ -11,8 +11,7 @@
  * License: GNU General Public License, version 3, http://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
-if ( !defined( 'WPINC' ) )
-{
+if ( ! defined( 'WPINC' ) ) {
 	// Exit if accessed directly
 	die();
 }
@@ -42,8 +41,8 @@ require_once WPPB_DIR . 'includes/functions.php';
  *
  * @package WP_Plugins\Boilerplate
  */
-class Plugin extends Singular
-{
+class Plugin extends Singular {
+
 	/**
 	 * Plugin version
 	 *
@@ -77,29 +76,39 @@ class Plugin extends Singular
 	 *
 	 * @var ACF_Pro_Loader
 	 */
-	public $acf;
+	// public $acf;
 
 	/**
 	 * Initialization
 	 *
 	 * @return void
 	 */
-	protected function init()
-	{
+	protected function init() {
+
 		// load language files
-		add_action( 'plugins_loaded', [ &$this, 'load_language' ] );
+		add_action( 'plugins_loaded', [ $this, 'load_language' ] );
 
 		// autoloader register
-		spl_autoload_register( [ &$this, 'autoloader' ] );
+		try {
+
+			spl_autoload_register( [ $this, 'autoloader' ] );
+
+		}
+		catch ( \Exception $exception ) {
+
+			return;
+
+		}
 
 		// modules
-		$this->acf      = ACF_Pro_Loader::get_instance();
+		// $this->acf      = ACF_Pro_Loader::get_instance();
 		$this->ajax     = Ajax_Handler::get_instance();
 		$this->backend  = Backend::get_instance();
 		$this->frontend = Frontend::get_instance();
 
 		// plugin loaded hook
-		do_action_ref_array( 'wppb_loaded', [ &$this ] );
+		do_action_ref_array( 'wppb_loaded', [ $this ] );
+
 	}
 
 	/**
@@ -110,24 +119,26 @@ class Plugin extends Singular
 	 *
 	 * @return void
 	 */
-	public function load_view( $view_name, $args = null )
-	{
+	public function load_view( $view_name, $args = null ) {
+
 		// build view file path
 		$__view_name     = $view_name;
 		$__template_path = WPPB_DIR . 'views/' . $__view_name . '.php';
-		if ( !file_exists( $__template_path ) )
-		{
+		if ( ! file_exists( $__template_path ) ) {
+
 			// file not found!
 			wp_die( sprintf( __( 'Template <code>%s</code> File not found, calculated path: <code>%s</code>', WPPB_DOMAIN ), $__view_name, $__template_path ) );
+
 		}
 
 		// clear vars
 		unset( $view_name );
 
-		if ( !empty( $args ) )
-		{
+		if ( ! empty( $args ) ) {
+
 			// extract passed args into variables
 			extract( $args, EXTR_OVERWRITE );
+
 		}
 
 		/**
@@ -155,6 +166,7 @@ class Plugin extends Singular
 		 * @param string $__view_name
 		 */
 		do_action( 'wppb_load_template_after', $__template_path, $__view_name, $args );
+
 	}
 
 	/**
@@ -162,9 +174,10 @@ class Plugin extends Singular
 	 *
 	 * @return void
 	 */
-	public function load_language()
-	{
+	public function load_language() {
+
 		load_plugin_textdomain( WPPB_DOMAIN, false, dirname( plugin_basename( WPPB_MAIN_FILE ) ) . '/languages' );
+
 	}
 
 	/**
@@ -174,10 +187,9 @@ class Plugin extends Singular
 	 *
 	 * @return void
 	 */
-	public function autoloader( $class_name )
-	{
-		if ( strpos( $class_name, __NAMESPACE__ ) === false )
-		{
+	public function autoloader( $class_name ) {
+
+		if ( strpos( $class_name, __NAMESPACE__ ) === false ) {
 			// skip non related classes
 			return;
 		}
@@ -187,12 +199,13 @@ class Plugin extends Singular
 				'\\',
 			], [ '', DIRECTORY_SEPARATOR ], $class_name ) . '.php';
 
-		if ( file_exists( $class_path ) )
-		{
+		if ( file_exists( $class_path ) ) {
 			// load class file if found
 			require_once $class_path;
 		}
+
 	}
+
 }
 
 // boot up the system
