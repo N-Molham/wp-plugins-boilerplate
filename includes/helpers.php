@@ -31,6 +31,52 @@ final class Helpers {
 	private static $assets_version;
 
 	/**
+	 * Check if password is pwned by the API
+	 *
+	 * @see https://haveibeenpwned.com/API/v2#PwnedPasswords
+	 *
+	 * @param string $password_hash the password hashed using SHA-1
+	 *
+	 * @return false|int|\WP_Error int if a match found, WP_Error on error, otherwise false
+	 */
+	public static function is_password_pwned( $password_hash ) {
+
+		// extract matching parts
+		$password_hash = strtoupper( $password_hash );
+		$hash_prefix   = substr( $password_hash, 0, 5 );
+		$hash_suffix   = substr( $password_hash, 5 );
+
+		// make the HTTPS request
+		$response      = wp_remote_get( 'https://api.pwnedpasswords.com/range/' . $hash_prefix );
+		$response_code = wp_remote_retrieve_response_code( $response );
+
+		// check if results came back successfully
+		if ( 200 !== $response_code ) {
+
+			return new \WP_Error( 'wppb_pwned_check_error', $response_code . ': ' . wp_remote_retrieve_body( $response ) );
+
+		}
+
+		// find a match
+		$results   = wp_remote_retrieve_body( $response );
+		$match_pos = strpos( $results, $hash_suffix );
+
+		// good news, nothing found
+		if ( false === $match_pos ) {
+
+			return false;
+
+		}
+
+		// get recurrence position
+		$suffix_end_pos = $match_pos + 36;
+		$line_break_pos = strpos( $results, "\n", $match_pos );
+
+		return (int) trim( substr( $results, $suffix_end_pos, $line_break_pos - $suffix_end_pos ) );
+
+	}
+
+	/**
 	 * Get Assets enqueue base path
 	 *
 	 * @return string
