@@ -10,19 +10,21 @@
 use WP_Plugins\Boilerplate\Component;
 use WP_Plugins\Boilerplate\Plugin;
 
-if ( !function_exists( 'wp_plugin_boilerplate' ) ):
+if ( ! function_exists( 'wp_plugin_boilerplate' ) ):
 	/**
 	 * Get plugin instance
 	 *
 	 * @return Plugin
 	 */
-	function wp_plugin_boilerplate()
-	{
+	function wp_plugin_boilerplate() {
+
 		return Plugin::get_instance();
+		
 	}
+	
 endif;
 
-if ( !function_exists( 'wppb_component' ) ):
+if ( ! function_exists( 'wppb_component' ) ):
 	/**
 	 * Get plugin component instance
 	 *
@@ -30,18 +32,18 @@ if ( !function_exists( 'wppb_component' ) ):
 	 *
 	 * @return Component|null
 	 */
-	function wppb_component( $component_name )
-	{
-		if ( isset( wp_plugin_boilerplate()->$component_name ) )
-		{
+	function wppb_component( $component_name ) {
+
+		if ( isset( wp_plugin_boilerplate()->$component_name ) ) {
 			return wp_plugin_boilerplate()->$component_name;
 		}
 
 		return null;
 	}
+	
 endif;
 
-if ( !function_exists( 'wppb_view' ) ):
+if ( ! function_exists( 'wppb_view' ) ):
 	/**
 	 * Load view
 	 *
@@ -51,32 +53,31 @@ if ( !function_exists( 'wppb_view' ) ):
 	 *
 	 * @return void
 	 */
-	function wppb_view( $view_name, $args = null, $return = false )
-	{
-		if ( $return )
-		{
+	function wppb_view( $view_name, $args = null, $return = false ) {
+
+		if ( $return ) {
 			// start buffer
 			ob_start();
 		}
 
 		wp_plugin_boilerplate()->load_view( $view_name, $args );
 
-		if ( $return )
-		{
+		if ( $return ) {
 			// get buffer flush
 			return ob_get_clean();
 		}
 	}
+	
 endif;
 
-if ( !function_exists( 'wppb_version' ) ):
+if ( ! function_exists( 'wppb_version' ) ):
 	/**
 	 * Get plugin version
 	 *
 	 * @return string
 	 */
-	function wppb_version()
-	{
+	function wppb_version() {
+
 		return wp_plugin_boilerplate()->version;
 	}
 endif;

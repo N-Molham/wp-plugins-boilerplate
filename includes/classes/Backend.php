@@ -5,15 +5,16 @@
  *
  * @package WP_Plugins\Boilerplate
  */
-class Backend extends Component
-{
+class Backend extends Component {
+
 	/**
 	 * Constructor
 	 *
 	 * @return void
 	 */
-	protected function init()
-	{
+	protected function init() {
+
 		parent::init();
+
 	}
 }
