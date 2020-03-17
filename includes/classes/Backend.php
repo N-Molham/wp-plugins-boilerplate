@@ -12,7 +12,7 @@ class Backend extends Component {
 	 *
 	 * @return void
 	 */
-	protected function init() {
+	protected function init(): void {
 
 		parent::init();
 

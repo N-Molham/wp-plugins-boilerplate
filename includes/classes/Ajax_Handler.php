@@ -17,7 +17,7 @@ class Ajax_Handler extends Component {
 	 *
 	 * @return void
 	 */
-	protected function init() {
+	protected function init(): void {
 
 		parent::init();
 
@@ -57,13 +57,13 @@ class Ajax_Handler extends Component {
 	/**
 	 * AJAX Debug response
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param mixed $data
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
-	public function debug( $data ) {
+	public function debug( $data ): void {
 
 		// return dump
 		$this->error( $data );
@@ -72,13 +72,13 @@ class Ajax_Handler extends Component {
 	/**
 	 * AJAX Debug response ( dump )
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param mixed $args
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
-	public function dump( $args ) {
+	public function dump( $args ): void {
 
 		// return dump
 		$this->error( print_r( func_num_args() === 1 ? $args : func_get_args(), true ) );
@@ -88,13 +88,13 @@ class Ajax_Handler extends Component {
 	/**
 	 * AJAX Error response
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param mixed $data
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
-	public function error( $data ) {
+	public function error( $data ): void {
 
 		wp_send_json_error( $data );
 
@@ -103,13 +103,13 @@ class Ajax_Handler extends Component {
 	/**
 	 * AJAX success response
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param mixed $data
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
-	public function success( $data ) {
+	public function success( $data ): void {
 
 		wp_send_json_success( $data );
 
@@ -118,13 +118,13 @@ class Ajax_Handler extends Component {
 	/**
 	 * AJAX JSON Response
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param mixed $response
+	 *
+	 * @since 1.0.0
 	 *
 	 * @return void
 	 */
-	public function response( $response ) {
+	public function response( $response ): void {
 
 		// send response
 		wp_send_json( $response );

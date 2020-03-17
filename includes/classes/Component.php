@@ -19,7 +19,7 @@ class Component extends Singular {
 	 *
 	 * @return void
 	 */
-	protected function init() {
+	protected function init(): void {
 
 		// vars
 		$this->plugin = Plugin::get_instance();

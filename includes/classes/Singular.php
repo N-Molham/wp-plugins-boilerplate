@@ -30,7 +30,7 @@ class Singular {
 	 *
 	 * @return static
 	 */
-	public static function get_instance( $args = '' ) {
+	public static function get_instance( $args = '' ): Singular {
 
 		$class_name = static::class;
 
@@ -54,19 +54,15 @@ class Singular {
 				// call without args
 				self::$instances[ $class_name ]->init();
 
+			} else if ( 1 === $num_args ) {
+
+				// pass on one argument
+				self::$instances[ $class_name ]->init( $args[0] );
+
 			} else {
 
-				if ( 1 === $num_args ) {
-
-					// pass on one argument
-					self::$instances[ $class_name ]->init( $args[0] );
-
-				} else {
-
-					// pass on all argument
-					call_user_func_array( [ self::$instances[ $class_name ], 'init' ], $args );
-
-				}
+				// pass on all argument
+				call_user_func_array( [ self::$instances[ $class_name ], 'init' ], $args );
 
 			}
 

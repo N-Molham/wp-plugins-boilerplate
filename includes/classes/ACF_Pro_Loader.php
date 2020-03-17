@@ -26,7 +26,7 @@ class ACF_Pro_Loader extends Component {
 	 *
 	 * @return void
 	 */
-	protected function init() {
+	protected function init(): void {
 
 		parent::init();
 
@@ -51,6 +51,7 @@ class ACF_Pro_Loader extends Component {
 		add_filter( 'acf/settings/show_admin', defined( 'WP_DEBUG' ) && WP_DEBUG ? '__return_true' : '__return_false', 20 );
 
 		// load ACF Pro main file
+		/** @noinspection PhpIncludeInspection */
 		require_once $acf_file_path;
 
 	}
@@ -62,7 +63,7 @@ class ACF_Pro_Loader extends Component {
 	 *
 	 * @return string
 	 */
-	public static function load_json_path( $paths ) {
+	public static function load_json_path( $paths ): string {
 
 		if ( ! is_array( $paths ) ) {
 			// set array
@@ -81,7 +82,7 @@ class ACF_Pro_Loader extends Component {
 	 *
 	 * @return string
 	 */
-	public static function save_json_path() {
+	public static function save_json_path(): string {
 
 		// return
 		return WPPB_DIR . self::$json;
@@ -93,7 +94,7 @@ class ACF_Pro_Loader extends Component {
 	 *
 	 * @return string
 	 */
-	public static function settings_path() {
+	public static function settings_path(): string {
 
 		// return
 		return WPPB_DIR . self::$path;
@@ -105,7 +106,7 @@ class ACF_Pro_Loader extends Component {
 	 *
 	 * @return string
 	 */
-	public static function settings_dir() {
+	public static function settings_dir(): string {
 
 		// return
 		return WPPB_URI . self::$path;

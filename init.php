@@ -1,4 +1,8 @@
-<?php namespace WP_Plugins\Boilerplate;
+<?php /** @noinspection AutoloadingIssuesInspection */
+
+namespace WP_Plugins\Boilerplate;
+
+use Exception;
 
 /**
  * Plugin Name: WP Plugins Boilerplate
@@ -83,7 +87,7 @@ class Plugin extends Singular {
 	 *
 	 * @return void
 	 */
-	protected function init() {
+	protected function init(): void {
 
 		// load language files
 		add_action( 'plugins_loaded', [ $this, 'load_language' ] );
@@ -94,7 +98,7 @@ class Plugin extends Singular {
 			spl_autoload_register( [ $this, 'autoloader' ] );
 
 		}
-		catch ( \Exception $exception ) {
+		catch ( Exception $exception ) {
 
 			return;
 
@@ -119,7 +123,7 @@ class Plugin extends Singular {
 	 *
 	 * @return void
 	 */
-	public function load_view( $view_name, $args = null ) {
+	public function load_view( $view_name, $args = null ): void {
 
 		// build view file path
 		$__view_name     = $view_name;
@@ -130,9 +134,6 @@ class Plugin extends Singular {
 			wp_die( sprintf( __( 'Template <code>%s</code> File not found, calculated path: <code>%s</code>', WPPB_DOMAIN ), $__view_name, $__template_path ) );
 
 		}
-
-		// clear vars
-		unset( $view_name );
 
 		if ( ! empty( $args ) ) {
 
@@ -155,6 +156,8 @@ class Plugin extends Singular {
 		 * @param string $__template_path
 		 * @param string $__view_name
 		 *
+		 * @noinspection PhpIncludeInspection
+		 * 
 		 * @return string
 		 */
 		require apply_filters( 'wppb_load_template_path', $__template_path, $__view_name, $args );
@@ -174,7 +177,7 @@ class Plugin extends Singular {
 	 *
 	 * @return void
 	 */
-	public function load_language() {
+	public function load_language(): void {
 
 		load_plugin_textdomain( WPPB_DOMAIN, false, dirname( plugin_basename( WPPB_MAIN_FILE ) ) . '/languages' );
 
@@ -187,7 +190,7 @@ class Plugin extends Singular {
 	 *
 	 * @return void
 	 */
-	public function autoloader( $class_name ) {
+	public function autoloader( $class_name ): void {
 
 		if ( strpos( $class_name, __NAMESPACE__ ) === false ) {
 			// skip non related classes
@@ -201,6 +204,7 @@ class Plugin extends Singular {
 
 		if ( file_exists( $class_path ) ) {
 			// load class file if found
+			/** @noinspection PhpIncludeInspection */
 			require_once $class_path;
 		}
 
