@@ -74,6 +74,26 @@ gulp.task( 'compress_js', function ( done ) {
 
 } );
 
+gulp.task( 'watch_assets', gulp.series( 'styles', 'compress_js', 'make_pot', function ( done ) {
+
+	gulp.watch( [
+		'assets/src/css/**/*.scss',
+		'assets/src/css/**/*.css',
+		'style.css'
+	], gulp.series( 'styles' ) );
+
+	gulp.watch( [
+		'assets/src/js/**/*.js'
+	], gulp.series( 'compress_js' ) );
+
+	gulp.watch( [
+		'**/*.php'
+	], gulp.series( 'make_pot' ) );
+
+	done();
+
+} ) );
+
 gulp.task( 'serve', gulp.series( 'styles', 'compress_js', 'make_pot', function ( done ) {
 
 	browserSync.init( {
