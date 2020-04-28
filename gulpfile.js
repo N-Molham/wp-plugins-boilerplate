@@ -74,7 +74,7 @@ gulp.task( 'compress_js', function ( done ) {
 
 } );
 
-gulp.task( 'watch_assets', gulp.series( 'styles', 'compress_js', 'make_pot', function ( done ) {
+const start_watch_assets = function () {
 
 	gulp.watch( [
 		'assets/src/css/**/*.scss',
@@ -89,6 +89,12 @@ gulp.task( 'watch_assets', gulp.series( 'styles', 'compress_js', 'make_pot', fun
 	gulp.watch( [
 		'**/*.php'
 	], gulp.series( 'make_pot' ) );
+
+};
+
+gulp.task( 'watch_assets', gulp.series( 'styles', 'compress_js', 'make_pot', function ( done ) {
+
+	start_watch_assets();
 
 	done();
 
@@ -100,19 +106,7 @@ gulp.task( 'serve', gulp.series( 'styles', 'compress_js', 'make_pot', function (
 		proxy: "localhost"
 	} );
 
-	gulp.watch( [
-		'assets/src/css/**/*.scss',
-		'assets/src/css/**/*.css',
-		'style.css'
-	], gulp.series( 'styles' ) );
-
-	gulp.watch( [
-		'assets/src/js/**/*.js'
-	], gulp.series( 'compress_js' ) );
-
-	gulp.watch( [
-		'**/*.php'
-	], gulp.series( 'make_pot' ) );
+	start_watch_assets();
 
 	done();
 
