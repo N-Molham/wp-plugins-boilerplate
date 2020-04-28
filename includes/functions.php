@@ -16,12 +16,12 @@ if ( ! function_exists( 'wp_plugin_boilerplate' ) ):
 	 *
 	 * @return Plugin
 	 */
-	function wp_plugin_boilerplate() {
+	function wp_plugin_boilerplate(): Plugin {
 
 		return Plugin::get_instance();
-		
+
 	}
-	
+
 endif;
 
 if ( ! function_exists( 'wppb_component' ) ):
@@ -32,28 +32,26 @@ if ( ! function_exists( 'wppb_component' ) ):
 	 *
 	 * @return Component|null
 	 */
-	function wppb_component( $component_name ) {
+	function wppb_component( $component_name ): ?Component {
 
-		if ( isset( wp_plugin_boilerplate()->$component_name ) ) {
-			return wp_plugin_boilerplate()->$component_name;
-		}
+		return wp_plugin_boilerplate()->$component_name ?? null;
 
-		return null;
 	}
-	
+
 endif;
 
 if ( ! function_exists( 'wppb_view' ) ):
+
 	/**
-	 * Load view
+	 * Render view with option to return it instead
 	 *
-	 * @param string  $view_name
-	 * @param array   $args
-	 * @param boolean $return
+	 * @param string $view_name
+	 * @param null   $args
+	 * @param bool   $return
 	 *
-	 * @return void
+	 * @return string|null
 	 */
-	function wppb_view( $view_name, $args = null, $return = false ) {
+	function wppb_view( $view_name, $args = null, $return = false ): ?string {
 
 		if ( $return ) {
 			// start buffer
@@ -66,8 +64,9 @@ if ( ! function_exists( 'wppb_view' ) ):
 			// get buffer flush
 			return ob_get_clean();
 		}
+
 	}
-	
+
 endif;
 
 if ( ! function_exists( 'wppb_version' ) ):
@@ -76,8 +75,9 @@ if ( ! function_exists( 'wppb_version' ) ):
 	 *
 	 * @return string
 	 */
-	function wppb_version() {
+	function wppb_version(): string {
 
 		return wp_plugin_boilerplate()->version;
+
 	}
 endif;
