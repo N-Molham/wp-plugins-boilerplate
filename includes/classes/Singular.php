@@ -30,7 +30,7 @@ abstract class Singular {
 	 *
 	 * @return static
 	 */
-	public static function get_instance( $args = '' ) {
+	public static function get_instance( $args = '' ): Singular {
 
 		$class_name = static::class;
 
