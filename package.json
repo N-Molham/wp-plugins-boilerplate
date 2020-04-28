@@ -1,11 +1,17 @@
 {
-  "private": true,
-  "dependencies": {
-    "grunt": "^1.1.0",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-uglify": "^0.11.1",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-wp-i18n": "^1.0.3"
-  }
+	"private": true,
+	"devDependencies": {
+		"gulp": "^4.0.2",
+		"gulp-clean-css": "^3.10.0",
+		"gulp-minify": "^1.0.0",
+		"gulp-sass": "^3.1.0",
+		"gulp-uglify": "^3.0.2",
+		"gulp-wp-pot": "^2.3.4",
+		"pump": "^3.0.0"
+	},
+	"dependencies": {
+		"browser-sync": "^2.26.3",
+		"gulp-sourcemaps": "^2.6.5",
+		"natives": "^1.1.6"
+	}
 }

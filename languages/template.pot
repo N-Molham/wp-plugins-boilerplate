@@ -1,4 +1,4 @@
-# Copyright (C) 2019 WP Plugins Boilerplate
+# Copyright (C) 2020 WP Plugins Boilerplate
 # This file is distributed under the same license as the WP Plugins Boilerplate package.
 msgid ""
 msgstr ""
@@ -12,6 +12,3 @@ msgstr ""
 "x-poedit-keywordslist: true\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: node_modules/grunt-wp-i18n/test/fixtures/basic-theme/page-templates/full-width.php:3
-msgid "Full Width"
-msgstr ""

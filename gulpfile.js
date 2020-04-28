@@ -1,14 +1,14 @@
-var gulp        = require( 'gulp' );
-var sass        = require( 'gulp-sass' );
-var sourcemaps  = require( 'gulp-sourcemaps' );
-var cleanCSS    = require( 'gulp-clean-css' );
-var browserSync = require( 'browser-sync' ).create();
-var file_system = require( 'fs' );
-var uglify      = require( 'gulp-uglify' );
-var pump        = require( 'pump' );
-var wp_pot      = require( 'gulp-wp-pot' );
+const gulp        = require( 'gulp' );
+const sass        = require( 'gulp-sass' );
+const sourcemaps  = require( 'gulp-sourcemaps' );
+const cleanCSS    = require( 'gulp-clean-css' );
+const browserSync = require( 'browser-sync' ).create();
+const file_system = require( 'fs' );
+const uglify      = require( 'gulp-uglify' );
+const pump        = require( 'pump' );
+const wp_pot      = require( 'gulp-wp-pot' );
 
-var update_assets_version = function () {
+const update_assets_version = function () {
 
 	file_system.writeFile( './assets/last_update', (new Date()).toISOString().replace( /[^0-9]/g, '' ), function ( error ) {
 
