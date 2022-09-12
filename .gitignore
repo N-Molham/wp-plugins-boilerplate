@@ -5,3 +5,4 @@ node_modules/
 .hgcheck/
 .idea
 false
+vendor

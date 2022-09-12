@@ -1,0 +1,25 @@
+{
+	"name": "n-molham/wp-plugins-boilerplate",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0",
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "Nabeel Molham",
+			"email": "n.molham@gmail.com"
+		}
+	],
+	"require": {
+		"php": "^7.4 || ^8.0",
+		"ext-json": "*",
+		"ext-mbstring": "*"
+	},
+	"autoload": {
+		"files": [
+			"includes/functions.php"
+		],
+		"psr-4": {
+			"WP_Plugins\\Boilerplate\\": "src/"
+		}
+	}
+}

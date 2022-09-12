@@ -51,7 +51,7 @@ if ( ! defined( 'WPPB_DOMAIN' ) ) {
 	define( 'WPPB_DOMAIN', 'wp-plugin-domain' );
 }
 
-dd_action( 'plugins_loaded', static function () {
+add_action( 'plugins_loaded', static function () {
 
 	// skip if plugin's main function already exists
 	if ( function_exists( 'wp_plugin_boilerplate' ) ) {
