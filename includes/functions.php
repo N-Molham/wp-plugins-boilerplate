@@ -65,6 +65,7 @@ if ( ! function_exists( 'wppb_view' ) ):
 			return ob_get_clean();
 		}
 
+		return null;
 	}
 
 endif;
