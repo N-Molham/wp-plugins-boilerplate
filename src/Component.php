@@ -12,17 +12,17 @@ class Component extends Singular {
 	 *
 	 * @var Plugin
 	 */
-	protected $plugin;
+	protected Plugin $plugin;
+
 
 	/**
 	 * Constructor
 	 *
 	 * @return void
 	 */
-	protected function init(): void {
+	protected function init() : void {
 
 		// vars
 		$this->plugin = Plugin::get_instance();
-
 	}
 }
