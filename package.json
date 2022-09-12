@@ -1,17 +1,15 @@
 {
 	"private": true,
 	"devDependencies": {
+		"browser-sync": "^2.27.10",
 		"gulp": "^4.0.2",
-		"gulp-clean-css": "^3.10.0",
-		"gulp-minify": "^1.0.0",
-		"gulp-sass": "^3.1.0",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-minify": "^3.1.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-sourcemaps": "^3.0.0",
 		"gulp-uglify": "^3.0.2",
-		"gulp-wp-pot": "^2.4.3",
-		"pump": "^3.0.0"
-	},
-	"dependencies": {
-		"browser-sync": "^2.26.12",
-		"gulp-sourcemaps": "^2.6.5",
-		"natives": "^1.1.6"
+		"gulp-wp-pot": "^2.5.0",
+		"pump": "^3.0.0",
+		"sass": "^1.54.9"
 	}
 }
