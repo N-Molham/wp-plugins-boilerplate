@@ -1,1 +1,1 @@
-{"version":3,"sources":["admin.css"],"names":[],"mappings":"AAAA,cACC,QAAS,aACT,cAAe,KACf,QAAS,IAAA,MAAA","file":"../admin.css","sourcesContent":[".plugin-class {\r\n\tdisplay: inline-block;\r\n\tmargin-bottom: 10px;\r\n\toutline: 1px solid red;\r\n}"]}
+{"version":3,"sources":["admin.css"],"names":[],"mappings":"AAAA,cACC,QAAA,aACA,cAAA,KACA,QAAA,IAAA,MAAA","file":"../admin.css","sourcesContent":[".plugin-class {\n\tdisplay: inline-block;\n\tmargin-bottom: 10px;\n\toutline: 1px solid red;\n}"]}
